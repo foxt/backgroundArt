@@ -1,0 +1,11 @@
+Package: com.thelmgn.backgroundArt
+Name: backgroundArt
+Version: 1.0.0
+Depends: firmware (>= 10.0), com.matchstic.xenhtml (>= 1.999.999)
+Architecture: iphoneos-arm
+Description: Show your currently playing media on the lock and home screens.
+Section: Themes
+Author: Leo Nesfield <leo@thelmgn.com>
+Maintainer: Leo Nesfield <leo@thelmgn.com>
+Tag: compatible::ios10, compatible::ios11, compatible::ios12,compatible::ios13,xenhtml
+Depiction: https://cydia.thelmgn.com/cydiaRepo/depiction/com.thelmgn.backgroundArt/

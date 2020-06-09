@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "##   M Installing backgroundArt"
+echo "##   G This is FREE and open source software"
+echo "#####N https://thelmgn.com | https://github.com/thelmgn/backgroundArt"
+echo ""
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo "To enable backgroundArt, please go to XenHTML settings."
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
