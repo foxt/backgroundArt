@@ -1,0 +1,69 @@
+<!-- com.thelmgn.backgroundArt -->
+<html>
+	<head>
+		<title>backgroundArt</title>
+		<script>
+			window.onload = function() {
+				var filter = (filter || "blur(5px) brightness(50%)")
+				var alwaysShow = (alwaysShow || 0)
+				//container
+				var elem = document.createElement("DIV")
+				elem.innerText = "" 
+				document.body.appendChild(elem)
+
+				//filterContainer
+				var filterer = document.createElement("DIV")
+				filterer.innerText = "" 
+				filterer.id = "filterer"
+				filterer.style.webkitBackdropFilter = filter
+				document.body.appendChild(filterer)
+
+				//loader
+				var preload = document.createElement("IMG")
+				preload.src = "about:blank"
+				document.body.appendChild(preload)
+				preload.onload = function() {
+					elem.style.backgroundImage = "url(" + preload.src + ")"
+					elem.style.opacity = "1"
+					filterer.style.opacity = "1"
+				}
+				api.media.observeData((data) => {
+					console.log(data)
+					if ((data.isPlaying || alwaysShow == 1) && data.nowPlaying.artwork && data.nowPlaying.artwork != "") {
+						preload.src = data.nowPlaying.artwork
+					} else {
+						elem.style.opacity = "0"
+						filterer.style.opacity = "0"
+					}
+				})
+			}
+		</script>
+		<style>
+			div {
+				position: fixed;
+				width: 100vw;
+				height:100vh;
+				top:0vh;
+				left:0vw;
+				background-size:cover;
+				background-repeat:no-repeat;
+				background-position: center;
+				transition: 1s all;
+				opacity: 0;
+			}
+			img {
+				width: 1px;
+				height:1px;
+				position:fixed;
+				left:1000vw;
+				top:1000vh;
+			}
+			#filterer {
+				z-index: 9999;
+				backdrop-filter: blur(5px) brightness(50%);
+			}
+	</head>
+	<body>
+	</body>
+</html>
+<!-- Nice -->
