@@ -6,6 +6,7 @@
 			window.onload = function() {
 				var filter = (filter || "blur(5px) brightness(50%)")
 				var alwaysShow = (alwaysShow || 0)
+				var disabledApps = (disabledApps || "YouTube;org.videolan.vlc-ios").split(";")
 				//container
 				var elem = document.createElement("DIV")
 				elem.innerText = "" 
@@ -23,15 +24,28 @@
 				preload.src = "about:blank"
 				document.body.appendChild(preload)
 				preload.onload = function() {
+					console.log("Showing thing")
 					elem.style.backgroundImage = "url(" + preload.src + ")"
 					elem.style.opacity = "1"
 					filterer.style.opacity = "1"
 				}
 				api.media.observeData((data) => {
 					console.log(data)
-					if ((data.isPlaying || alwaysShow == 1) && data.nowPlaying.artwork && data.nowPlaying.artwork != "") {
-						preload.src = data.nowPlaying.artwork
+					if ((data.isPlaying || alwaysShow == 1) && // paused or not
+						data.nowPlaying.artwork && data.nowPlaying.artwork != "" && // has artwork
+						!data.nowPlaying.artwork.startsWith("xui://application/icon") && // artwork isn't app icon
+						!(disabledApps.includes(data.nowPlayingApplication.name) || disabledApps.includes(data.nowPlayingApplication.identifier)) // disabled apps
+						) {
+						if (preload.src != data.nowPlaying.artwork) {
+							console.log("Updating")
+							preload.src = data.nowPlaying.artwork
+						} else {
+							console.log("Unpaused")
+							preload.src = data.nowPlaying.artwork
+							preload.onload()
+						}
 					} else {
+						console.log("CHANGE DA WORLD, MY FINAL MESSAGE. GOOD BYE")
 						elem.style.opacity = "0"
 						filterer.style.opacity = "0"
 					}
@@ -62,8 +76,8 @@
 				z-index: 9999;
 				backdrop-filter: blur(5px) brightness(50%);
 			}
-	</head>
+	</style>
+	<!-- Nice -->
 	<body>
 	</body>
-</html>
-<!-- Nice -->
+</html

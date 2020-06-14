@@ -24,6 +24,26 @@
 	<key>default</key>
 	<false/>
 </dict>
+<dict>
+	<key>name</key>
+	<string>disabledAppsTitle</string>
+	<key>type</key>
+	<string>edit</string>
+	<key>label</key>
+	<string>Disabled in apps (bundleid or name, seperated by ;)</string>
+	<key>default</key>
+	<string></string>
+</dict>
+<dict>
+	<key>name</key>
+	<string>disabledApps</string>
+	<key>type</key>
+	<string>edit</string>
+	<key>label</key>
+	<string> </string>
+	<key>default</key>
+	<string>YouTube;org.videolan.vlc-ios</string>
+</dict>
 
 </array>
 </plist>
